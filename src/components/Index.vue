@@ -48,8 +48,6 @@ export default {
         server_MSG: function (data) {
             console.log(data)
             data = JSON.parse(data)
-            data['serial'] = this.serial
-            this.serial = this.serial + 1
             this.$store.dispatch('appendToList_ServerMsg', data)
         },
         req:function (data) {

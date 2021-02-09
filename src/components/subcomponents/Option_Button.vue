@@ -3,7 +3,6 @@
 
         <button id="raise" :disabled="disable_indicator" v-on:click="clickButton(index, option)"> {{option_c}} </button>
 
-
     </div>
 
 </template>

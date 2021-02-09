@@ -3,7 +3,10 @@
     <Bubble
             v-for="post in msgs"
               v-bind:key="post.serial"
-              v-bind:post="post"></Bubble>
+              v-bind:serials="post.serial"
+              v-bind:post="post"
+
+    ></Bubble>
   </div>
 </template>
 

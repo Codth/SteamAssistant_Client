@@ -19,7 +19,7 @@
             <div v-else>
                 <div>
                     <div class="leftside">
-                        <p  class="bubble-inside isBot" @mouseover="trigger">
+                        <p  class="bubble-inside isBot"  v-bind:class="{'consecutive-top': consecutive_top, 'consecutive-bottom': consecutive_bottom}" @mouseover="trigger">
                             {{prompt_content}}
                         </p>
                     </div>
@@ -61,9 +61,6 @@
             </div>
         </div>
 
-
-
-
         <br style="clear: both">
     </div>
 
@@ -77,7 +74,9 @@
       name: 'Bubble',
       components: {Option_Button, ListView},
         props: {
-            post: Object
+            key: Number,
+            post: Object,
+            serials: Number
         },
 
     data: function () {
@@ -95,7 +94,8 @@
           optionType: this.post.options.optionType,
           options: this.post.options,
 
-          active: false
+          serial:this.serials,
+          active: false,
       }
     },
     methods:{
@@ -120,9 +120,29 @@
             }
             return obj
         }
+    },
+      computed:{
+          consecutive_top: function(){
+            let obj = this.$store.getters.getList[this.serial-1]
+              if(!obj.sender && obj.prompt.promptType==1){
+                  return true
+              }
+              return false
+          },
 
+        consecutive_bottom: function(){
+              try {
+                  let obj = this.$store.getters.getList[this.serial+1]
+                  if(!obj.sender && obj.prompt.promptType==1){
+                      return true
+                  }
+              }catch{
+                  return true
+              }
+              return false
+        }
 
-    }
+      }
   }
 </script>
 
@@ -181,6 +201,14 @@
 
     #Option-area{
         margin-left: 7%;
+    }
+
+    .consecutive-top{
+        background-color: lightcoral;
+    }
+
+    .consecutive-bottom{
+        background-color: lightseagreen;
     }
 </style>
 

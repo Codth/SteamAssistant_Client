@@ -13,19 +13,19 @@ const mutations = {
         state.curMsg = message
     },
 
-    appendToList(state, message) {
-        state.Maintain_msg.push(message)
-    },
-
+    appendToList(state, {payload, getters}) {
+        payload['serial'] = getters.getCounter + 1
+        state.Maintain_msg.push(payload)
+    }
 
 }
 
 const actions = {
     addCurMsg: ({ commit }, payload) => commit('addCurMsg', payload),
-    appendToList_ServerMsg: ({ commit },payload) => commit('appendToList',payload),
-    appendToList_ClientMsg({ commit },payload){
+    appendToList_ServerMsg: ({ commit, getters },payload) => commit('appendToList',{payload, getters}),
+    appendToList_ClientMsg({ commit, getters },payload){
         payload = clientSelfMsg(payload)
-        commit('appendToList',payload)
+        commit('appendToList', {payload, getters})
     }
 }
 
@@ -53,8 +53,7 @@ function clientSelfMsg(msg){
         options: {
             optionType: 1,
             array: []
-        },
-        serial: 16
+        }
     }
 }
 
