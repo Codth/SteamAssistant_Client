@@ -7,7 +7,12 @@
 
                 <div class="col-6 outer-window">
                     <Display />
-                    <InputBox @inputs="onInput"/>
+
+                    <div class="input">
+                        <InputBox @inputs="onInput"/>
+                    </div>
+
+
                 </div>
 
                 <div class="col"></div>
@@ -25,7 +30,7 @@ import InputBox from './InputBox.vue'
 // import Data from './api.js'
 
 
-
+//
 const Localhost = "http://127.0.0.1:5000/"
 
 
@@ -41,6 +46,7 @@ export default {
             localStorage.setItem('id', this.$socket.id)
         },
         server_MSG: function (data) {
+            console.log(data)
             data = JSON.parse(data)
             data['serial'] = this.serial
             this.serial = this.serial + 1
@@ -97,5 +103,13 @@ export default {
         border-style: solid;
         border-color: black;
         height: 80%;
+        padding: 0px;
+        margin-top: 40px;
+
+    }
+
+    .input{
+        width: 100%;
+        height: 6%;
     }
 </style>

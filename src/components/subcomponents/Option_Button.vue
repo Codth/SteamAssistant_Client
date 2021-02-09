@@ -1,7 +1,7 @@
 <template>
     <div>
 
-        <button id="raise" v-on:click="clickButton(index, option)"> {{option_c}} </button>
+        <button id="raise" :disabled="disable_indicator" v-on:click="clickButton(index, option)"> {{option_c}} </button>
 
 
     </div>
@@ -19,7 +19,8 @@
     data: function () {
       return {
           option_c: this.option,
-          active: false
+          active: false,
+          counter: this.$store.state.Maintain_msg.length
       }
     },
     methods:{
@@ -34,7 +35,13 @@
             this.$emit('buttons', obj)
         }
 
-    }
+    },
+      computed:{
+          disable_indicator:  function () {
+              if(this.$store.getters.getCounter != this.counter ) return true
+              return false
+          }
+      }
   }
 </script>
 

@@ -24,10 +24,9 @@
 
 <style scoped>
   .inner-window{
-    margin: 3%;
-    height: 90%;
-    width: 95%;
-    border: solid blue;
+    height: 94%;
+    width: 100%;
+    /*border: solid blue;*/
   }
 
   .area{

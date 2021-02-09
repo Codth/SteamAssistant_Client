@@ -131,7 +131,7 @@
     .bubble-inside{
         width: fit-content;
         border-radius: 20px;
-        padding: 10px;
+        padding: 8px;
         margin: 10px;
         border-bottom: grey 1px solid;
         display: block;
@@ -141,7 +141,7 @@
 
 
     .isMe{
-        margin-right: 27px;
+        margin-right: 2%;
         float: right;
         background-color: rgb(0, 153, 255);
         color: white;

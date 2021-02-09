@@ -1,6 +1,6 @@
 <template>
 
-  <div class="row underbar">
+  <div class="underbar">
 
     <div class="inputBox">
       <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Type Your Message ... " v-model="form_msg" v-on:keyup.enter="onEnter" >
@@ -43,6 +43,8 @@
       margin-left: 3%;
     height: 4%;
     width: 80%;
+    padding-top: 5px;
+
   }
 
     .but1{
@@ -63,5 +65,6 @@
 
   .underbar{
     background-color: lightblue;
+    height: 100%;
   }
 </style>

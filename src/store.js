@@ -15,7 +15,9 @@ const mutations = {
 
     appendToList(state, message) {
         state.Maintain_msg.push(message)
-    }
+    },
+
+
 }
 
 const actions = {
@@ -28,7 +30,8 @@ const actions = {
 }
 
 const getters = {
-    getList: state => state.Maintain_msg
+    getList: state => state.Maintain_msg,
+    getCounter: state => state.Maintain_msg.length
 }
 
 function clientSelfMsg(msg){
