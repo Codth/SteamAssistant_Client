@@ -1,10 +1,10 @@
 <template>
-    <div style="display: block;" @mouseover="mouseOver" @mouseout="active = false">
+    <div  v-bind:class="{'c-bottom': c_bottom}" @mouseover="mouseOver" @mouseout="active = false">
 
 
         <!--        Bot MSG          -->
         <div  v-if="sender == false">
-            <img id="avatar" src="../assets/steam.png">
+            <img id="avatar" v-show="!c_top" src="../assets/steam.png">
 
             <div v-if="optionType == 3">
 
@@ -19,15 +19,18 @@
             <div v-else>
                 <div>
                     <div class="leftside">
-                        <p  class="bubble-inside isBot"  v-bind:class="{'consecutive-top': consecutive_top, 'consecutive-bottom': consecutive_bottom}" @mouseover="trigger">
+                        <p  class="bubble-inside isBot" v-bind:class="{'c-top': c_top, 'c-bot2':c_bottom}" @mouseover="trigger">
                             {{prompt_content}}
                         </p>
                     </div>
 
-                    <div class="rightside" style="float: left" v-show="active">
-                        <i class="fas fa-reply small-icon"></i>
-                        <i class="fas fa-ellipsis-h small-icon"></i>
+                    <div v-show="!c_top">
+                        <div class="rightside" style="float: left" v-show="active">
+                            <i class="fas fa-reply small-icon"></i>
+                            <i class="fas fa-ellipsis-h small-icon"></i>
+                        </div>
                     </div>
+
                 </div>
 
 
@@ -122,17 +125,21 @@
         }
     },
       computed:{
-          consecutive_top: function(){
-            let obj = this.$store.getters.getList[this.serial-1]
-              if(!obj.sender && obj.prompt.promptType==1){
-                  return true
+          c_top: function(){
+              try {
+                  let obj = this.$store.getters.getList[this.serial-2]
+                  if(!obj.sender && obj.prompt.promptType==1){
+                      return true
+                  }
+              }catch{
+                  return false
               }
               return false
           },
 
-        consecutive_bottom: function(){
+        c_bottom: function(){
               try {
-                  let obj = this.$store.getters.getList[this.serial+1]
+                  let obj = this.$store.getters.getList[this.serial-1]
                   if(!obj.sender && obj.prompt.promptType==1){
                       return true
                   }
@@ -203,12 +210,20 @@
         margin-left: 7%;
     }
 
-    .consecutive-top{
-        background-color: lightcoral;
+
+
+    .c-bottom{
+        height: 56px;
     }
 
-    .consecutive-bottom{
-        background-color: lightseagreen;
+    .c-top{
+        margin-left: 7%;
+        margin-top: 0px;
     }
+
+    .c-bot2{
+        margin-bottom: 0px;
+    }
+
 </style>
 

@@ -48,7 +48,7 @@
         display: block;
         color: black;
         background-color: #F2F3F5;
-        margin-left: 3%;
+        margin-left: 7%;
         float: left;
         margin-top: 3%;
     }

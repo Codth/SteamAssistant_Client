@@ -5,7 +5,7 @@
 
                 <div class="col"></div>
 
-                <div class="col-6 outer-window">
+                <div class="col-6 outer-window container">
                     <Display />
 
                     <div class="input">
@@ -46,12 +46,18 @@ export default {
             localStorage.setItem('id', this.$socket.id)
         },
         server_MSG: function (data) {
-            console.log(data)
             data = JSON.parse(data)
+            this.gateway()
+            this.setSuggestion(data)
             this.$store.dispatch('appendToList_ServerMsg', data)
         },
+
         req:function (data) {
             console.log(data)
+        },
+
+        state_Receiver: function(data){
+            localStorage.setItem('state', data)
         }
     },
     data: function () {
@@ -83,6 +89,19 @@ export default {
             }
             this.$socket.emit('client_MSG', param);
             this.Maintain_msg.push(obj)
+        },
+        setSuggestion: function(data){
+            if(data.prompt.prompt_index == 1){
+                this.$store.dispatch('setSuggestion', true)
+            }
+        },
+        gateway: function(){
+            // if((localStorage.getItem('state') ==  1) && (localStorage.getItem('waiting')==1)){
+            //
+            //     console.log("Remove the last element )))))))))))))))")
+            //     this.$store.dispatch('RemoveLastElement_List')
+            //
+            // }
         }
 
 
@@ -103,11 +122,15 @@ export default {
         height: 80%;
         padding: 0px;
         margin-top: 40px;
+        position: relative;
 
     }
 
     .input{
         width: 100%;
         height: 6%;
+        bottom: 0px;
+        position: absolute;
+        float: bottom;
     }
 </style>
