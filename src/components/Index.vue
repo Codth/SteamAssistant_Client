@@ -47,7 +47,7 @@ export default {
         },
         server_MSG: function (data) {
             data = JSON.parse(data)
-            this.gateway()
+            // this.gateway()
             this.setSuggestion(data)
             this.$store.dispatch('appendToList_ServerMsg', data)
         },

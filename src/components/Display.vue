@@ -21,7 +21,7 @@
 
 <script>
   import Bubble from "./Bubble"
-  import Suggestion from "./Suggestion"
+  import Suggestion from "./DisplayComponents/Suggestion"
 
   import simplebar from 'simplebar-vue';
   import 'simplebar/dist/simplebar.min.css';
@@ -39,10 +39,8 @@
         msgs : this.$store.getters.getList
       }
     }
-
-
-
   }
+
 </script>
 
 <style scoped>

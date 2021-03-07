@@ -157,6 +157,7 @@
 
     .bubble-inside{
         width: fit-content;
+        max-width: 75%;
         border-radius: 20px;
         padding: 8px;
         margin: 10px;

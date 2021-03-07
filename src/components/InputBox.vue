@@ -60,9 +60,6 @@
             //Remove all the tags in input box
             $('.tag').remove()
 
-
-
-
             //Send tags to server
             const joinedString = TagList.join(", ")
             this.$store.dispatch('appendToList_ClientMsg', joinedString)
@@ -162,7 +159,8 @@
   .tag{
     padding-top: 5px;
     margin-right:4px;
-    background: SteelBlue;
+    background: blue;
+    opacity: 0.5;
     border-radius: 7px;
     padding: 4px;
     color: #F2F3F5;
